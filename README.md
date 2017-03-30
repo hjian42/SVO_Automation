@@ -11,7 +11,7 @@ The whole pipeline is composed of three steps:
   - Clean data converted from pdf format
   - Extract titles and contents of Emory Lynching articles and separate them into two parts 
  
-## Anaphora Resolution 
+## Anaphora Resolution: Stanford CoreNLP 
   - Replace mentions of entities (e.g. pronouns like "he" and "she") with their most representative representations using Stanford CoreNLP's coreference (anaphora) resolution
   - Used to maximize and validate SVO extraction by correctly identifying actors
   
@@ -20,7 +20,7 @@ The whole pipeline is composed of three steps:
   `Bill Cato Attempted to Assault Mrs. Vickers. He was shot to death.` will look like 
   `Bill Cato Attempted to Assault Mrs. Vickers. Bill Cato was shot to death.` after anaphora resolution.
 
-## SVO Extraction 
+## SVO Extraction: ClausIE 
   - Format Emory Lynching Corpus `cleaned_corenlp_lynching.txt` into `clausie_input.txt` to be ready for ClausIE in order to get triplets
   - Extract only SVO's from `sentences-test-out.txt` to `svo.txt`
   - Filter SVO sets by preserving the ones only confirmed verbs and actors of our interest into `terminal_svo.txt`
