@@ -1,7 +1,7 @@
 # SVO Triplet Automation of Narrative Stories for Social Sciences 
 
 The goal of the project is to build the pipeline to automate the process of generating the SVO triplets for the use of social science. 
-For example, character relatioonships can be visualized using networks in Ghephi based on SVO triplets. In the end, we want to integrate the pipeline into the NLP software [PC-ACE](https://pc-ace.com/) developed by Professor Roberto Franzosi at Emory from Sociology Department.
+For example, character relatioonships can be visualized using networks in Gephi based on SVO triplets. In the end, we want to integrate the pipeline into the NLP software [PC-ACE](https://pc-ace.com/) developed by Professor Roberto Franzosi at Emory from Sociology Department.
 
 The whole pipeline is composed of three steps:
   - Data Cleaning 
@@ -13,7 +13,8 @@ The whole pipeline is composed of three steps:
   - Extract titles and contents of Emory Lynching articles and separate them into two parts 
  
 ## Anaphora Resolution 
-  - Replace mentions of entities with their most possible representations in the Emory Lyching Dataset based on the result of Stanford CoreNlp Anaphora Resolution
+  - Replace mentions of entities (e.g. pronouns like "he" and "she") with their most representative representations using Stanford CoreNLP's coreference (anaphora) resolution
+  - Used to simplify SVO extraction
   
   For example: 
   
