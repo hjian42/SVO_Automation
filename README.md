@@ -23,7 +23,7 @@ The whole pipeline is composed of three steps:
 ## SVO Extraction: ClausIE 
   - Format Emory Lynching Corpus `cleaned_corenlp_lynching.txt` into `clausie_input.txt` to be ready for ClausIE in order to get triplets
   - Extract only SVO's from `sentences-test-out.txt` to `svo.txt`
-  - Filter SVO sets by preserving the ones only confirmed verbs and actors of our interest into `terminal_svo.txt`
+  - Filter SVO sets into `terminal_svo.txt` by preserving only triples with a confirmed social actor as the subject and a confirmed social action as the verb
   
   The SVO results will look like the following:
       
