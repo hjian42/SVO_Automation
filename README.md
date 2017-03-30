@@ -13,7 +13,7 @@ The whole pipeline is composed of three steps:
  
 ## Anaphora Resolution 
   - Replace mentions of entities (e.g. pronouns like "he" and "she") with their most representative representations using Stanford CoreNLP's coreference (anaphora) resolution
-  - Used to simplify SVO extraction
+  - Used to maximize and validate SVO extraction by correctly identifying actors
   
   For example: 
   
