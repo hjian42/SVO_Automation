@@ -1,7 +1,7 @@
 # SVO Triplet Automation of Narrative Stories for Social Sciences 
 
 The goal of the project is to build the pipeline to automate the process of generating the SVO triplets for the use of social science. 
-For example, character relatioonships can be visualized using networks in Ghephi based on SVO triplets. 
+For example, character relatioonships can be visualized using networks in Ghephi based on SVO triplets. In the end, we want to integrate the pipeline into the NLP software [PC-ACE](https://pc-ace.com/) developed by Professor Roberto Franzosi at Emory from Sociology Department.
 
 The whole pipeline is composed of three steps:
   - Data Cleaning 
@@ -36,4 +36,6 @@ The whole pipeline is composed of three steps:
   - NLTK
   - ClausIE
   - enchant
-  
+
+## Version 
+Alpha Version. It is still up to changes in the future. Welcome any comments and advice. 
