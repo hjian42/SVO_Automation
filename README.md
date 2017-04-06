@@ -27,9 +27,9 @@ The whole pipeline is composed of three steps:
   
   The SVO results will look like the following:
       
-      V: attempt, S: negress, O: murder
-      V: enter, S: mob, O: cell
-      V: shot, S: winslow, O: winslow
+      S: mob            , V: estim          , O: shooting       
+      S: girl           , V: protect        , O: negro          
+      S: prisoner       , V: has            , O: neck 
   
 ##  Dependencies:
   - Stanford CoreNlp 
