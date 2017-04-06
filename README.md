@@ -25,7 +25,7 @@ The whole pipeline is composed of three steps:
   - Extract only SVO's from `sentences-test-out.txt` to `svo.txt`
   - Filter SVO sets into `terminal_svo.txt` by preserving only triples with a confirmed social actor as the subject and a confirmed social action as the verb
   
-  The SVO results will look like the following:
+  The SVO results will look like the following (verbs are converted into stem, so 'estim' means 'estimate'):
       
       S: mob            , V: estim          , O: shooting       
       S: girl           , V: protect        , O: negro          
