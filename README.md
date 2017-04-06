@@ -23,13 +23,13 @@ The whole pipeline is composed of three steps:
 ## SVO Extraction: ClausIE 
   - Format Emory Lynching Corpus `cleaned_corenlp_lynching.txt` into `clausie_input.txt` to be ready for ClausIE in order to get triplets
   - Extract only SVO's from `sentences-test-out.txt` to `svo.txt`
-  - Filter SVO sets into `terminal_svo.txt` by preserving only triples with a confirmed social actor as the subject and a confirmed social action as the verb
+  - Filter SVO sets into `terminal_svo.txt` by preserving only triplets with a confirmed social actor as the subject
   
-  The SVO results will look like the following:
+  The SVO results will look like the following (verbs are converted into stem, so `estim` means `estimate`):
       
-      V: attempt, S: negress, O: murder
-      V: enter, S: mob, O: cell
-      V: shot, S: winslow, O: winslow
+      S: mob            , V: estim          , O: shooting       
+      S: girl           , V: protect        , O: negro          
+      S: prisoner       , V: has            , O: neck 
   
 ##  Dependencies:
   - Stanford CoreNlp 

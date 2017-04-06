@@ -1,12 +1,14 @@
-import java.util.Scanner;
-import java.util.Set;
-import java.util.regex.Pattern;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -14,84 +16,104 @@ import java.util.Properties;
 import edu.stanford.nlp.coref.CorefCoreAnnotations;
 import edu.stanford.nlp.coref.CorefCoreAnnotations.CorefChainAnnotation;
 import edu.stanford.nlp.coref.data.CorefChain;
-import edu.stanford.nlp.coref.data.Dictionaries;
 import edu.stanford.nlp.coref.data.CorefChain.CorefMention;
-import edu.stanford.nlp.coref.data.Mention;
+import edu.stanford.nlp.coref.data.Dictionaries;
 import edu.stanford.nlp.ling.CoreAnnotations;
-import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 
-public class CorefExample {
+public class Coref {
 	static String[] pronouns = new String[] { "he", "she", "his", "him", "her", "they", "their" };
+	static Map<String, String> decoder = new HashMap<String, String>();
+	static Map<String, String> charsToReplace = new HashMap<String, String>();
+	
+	public static void decodeSpecialCharacters() {
+		decoder.put("-LRB-", "(");
+		decoder.put("-RRB-", ")");
+		decoder.put("-LSB-", "[");
+		decoder.put("-RSB-", "]");
+	}
 	
 	public static void main(String[] args) throws Exception {
-		// String filename =
-		// "/Users/apple/Documents/workspace/coreNLP2/src/sample.txt";
-		// String content = new Scanner(new
-		// File(filename)).useDelimiter("\\Z").next();
-		CorefExample ce = new CorefExample();
-		String content = "Bill Cato, a Negro Saw Mill Hand, Attempted to Assault Mrs. Vickers. He Was Taken From the Doerun Guard House and Shot to Death. He Made Confession of Crime. News of a lynching which occurred at Doerun, Worth county, twenty-one miles from Albany to an early hour yesterday morning, reached the city today. It seems that an effort was made to keep the story of the lynching as quiet as possible, and the HERALD only learned of the affair this morning by chance. It appears that on last Monday night a negro saw mill hand named Bill Cato entered the home of a Mr. Vickers and attempted a criminal assault on Mrs. Vickers. His designs were frustrated by his intended victim�s screams and the interference of her husband. Cato made his escape. Next day he was captured, however, by some of the saw mill men of the neighborhood, who, strange to relate, let him off with a severe whipping and ordered him to leave the state. The negro departed, but unwisely remained in the neighborhood. When the people of Doerun heard of the crime they decided that Cato had not been sufficiently punished. They organized a search for him and finally succeeded in capturing him. He was placed in the Doerun guard house, and was not only identified by Mrs. Vickers as the right party, but, it is stated made a voluntary confession. At an early hour yesterday morning a mob of quiet but thoroughly determined men went to the guard house, forced the locks on the doors and took charge of Cato. He was carried outside and about seventy-five shots were fired into his body. His corpse was found after daylight within a few feet of the guard house door.";
+		Coref ce = new Coref();
 		
+		String inputDirectory = "";
+		String outputDirectory = "";
+		String inputFile = "";
+		for (int i = 0; i < args.length; i++) {
+            if ("-inputDirectory".equals(args[i])) {
+            	inputDirectory = args[i + 1];
+                i++;
+            } else if ("-inputFile".equals(args[i])) {
+                inputFile = args[i + 1];
+                i++;
+            } else if ("-outputDirectory".equals(args[i])) {
+            	outputDirectory = args[i + 1];
+                i++;
+            }
+        }
+		
+		decodeSpecialCharacters();
+		fillCharsToReplace();
 		//Annotation doc = new Annotation(content);
 		Properties props = new Properties();
 		props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner,parse,mention,coref");
 		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-		String myDirectoryPath = "C:\\Users\\Doris\\Documents\\School\\Emory\\Research\\100txt";
 		String outputFile;
-		String inputFile;
-		PrintWriter out;
 		//getRepresentativeMentions("C:\\Users\\Doris\\Documents\\PC-ACE\\test\\corefex.txt", pipeline);
-		System.out.println(ce.replaceMentions("C:\\Users\\Doris\\Documents\\PC-ACE\\test\\corefex.txt", pipeline));
+		//System.out.println(ce.replaceMentions("C:\\Users\\Doris\\Documents\\PC-ACE\\test\\corefex.txt", pipeline));
 		
-		/*File dir = new File(myDirectoryPath);
-		  File[] directoryListing = dir.listFiles();
-		  if (directoryListing != null) {
-		    for (File child : directoryListing) {
-		      inputFile = child.getAbsolutePath();
-		      System.out.println(inputFile);
-		      outputFile = "C:\\Users\\Doris\\Documents\\School\\Emory\\Research\\100out\\" + child.getName().replaceFirst("[.][^.]+$", "") + "-out";
-		      
-		      out = new PrintWriter(outputFile + ".txt", "UTF-8");
-		      
-		      String resolved = ce.replaceMentions(inputFile, pipeline);
-		      //resolved = resolved.replace("� $'' ", "�");
-		      //resolved = resolved.replace("-LRB- ", "(");
-		      //resolved = resolved.replace(" -RRB-", ")");
-		      out.print(resolved);
-		      
-		      out.close();
-		    }
-		  } else {
-		    // Handle the case where dir is not really a directory.
-		    // Checking dir.isDirectory() above would not be sufficient
-		    // to avoid race conditions with another process that deletes
-		    // directories.
-		  }*/
+		if (inputFile.length() > 0) {
+			//read in/output one file
+			File input = new File(inputFile);
+			if (outputDirectory.length() > 0) {
+				outputFile = outputDirectory + File.separator + input.getName().replaceFirst("[.][^.]+$", "") + "-out";
+			} else {
+				outputFile = input.getName().replaceFirst("[.][^.]+$", "") + "-out";
+			}
+			
+			Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile + ".txt"), "UTF-8");
+			
+			String resolved = ce.replaceMentions(inputFile, pipeline);
+			
+			writer.write(resolved);
+			
+			writer.close();
+		} else if (inputDirectory.length() > 0) {
+			//read in/output all files in a folder
+			File dir = new File(inputDirectory);
+			File[] directoryListing = dir.listFiles();
+			
+			if (directoryListing != null) {
+				for (File child : directoryListing) {
+					inputFile = child.getAbsolutePath();
+					System.out.println(inputFile);
+					//replaceSpecialCharacters(inputFile);
+					if (outputDirectory.length() > 0) {
+						outputFile = outputDirectory + File.separator + child.getName().replaceFirst("[.][^.]+$", "") + "-out";
+					} else {
+						outputFile = child.getName().replaceFirst("[.][^.]+$", "") + "-out";
+					}
+					Writer writer = new OutputStreamWriter(new FileOutputStream(outputFile + ".txt"), "UTF-8");
+					
+					String resolved = ce.replaceMentions(inputFile, pipeline);
+					
+					writer.write(resolved);
+					
+					writer.close();
+				}
+			} else {
+			    //dir is not really a directory
+				System.out.println("invalid directory");
+			}
+		} else {
+			System.out.println("Please put an input directory.");
+		}
 		
 		  
 		//ce.checkForUnresolvedPronouns(resolved);
-	}
-	
-	public static void getRepresentativeMentions(String filename, StanfordCoreNLP pipeline) throws IOException {
-		String content = readFile(filename);
-		//System.out.println(content);
-		Annotation doc = new Annotation(content);
-		/*Properties props = new Properties();
-		props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner,parse,mention,coref");*/
-		//StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-		pipeline.annotate(doc);
-
-		Map<Integer, CorefChain> corefs = doc.get(CorefChainAnnotation.class);
-		for (Integer k : corefs.keySet()) {
-			CorefChain cc = corefs.get(k);
-			
-			System.out.println("\n" + cc.toString());
-			System.out.println(cc.getRepresentativeMention().mentionSpan + ", headID:" + cc.getRepresentativeMention().headIndex + ", sent:" + cc.getRepresentativeMention().sentNum);
-		}
-		
 	}
 	
 	/**
@@ -102,11 +124,7 @@ public class CorefExample {
 	 */
 	public String replaceMentions(String filename, StanfordCoreNLP pipeline) throws IOException {
 		String content = readFile(filename);
-		//System.out.println(content);
 		Annotation doc = new Annotation(content);
-		/*Properties props = new Properties();
-		props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner,parse,mention,coref");*/
-		//StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 		pipeline.annotate(doc);
 
 		Map<Integer, CorefChain> corefs = doc.get(CorefChainAnnotation.class);
@@ -197,14 +215,28 @@ public class CorefExample {
 		}
 
 		String resolvedStr = "";
-		if (resolved.size() > 0) resolvedStr += resolved.get(0) + " ";
+		if (resolved.size() > 0) {
+			String str = resolved.get(0);
+			for (String key : decoder.keySet()) {
+				if (str.equals(key)) {
+					str = decoder.get(key);
+				}
+			}
+			resolvedStr += str + " ";
+		}
 		for (int i = 1; i < resolved.size(); i++) {
 			//fix capitalization following end punctuation
 			String str = resolved.get(i);
 			String prev = resolved.get(i-1);
-			String endPunct = ".!?'";
+			String endPunct = ".!?";
 			if (endPunct.contains(prev)) {
 				str = str.substring(0, 1).toUpperCase() + str.substring(1);
+			}
+			
+			for (String key : decoder.keySet()) {
+				if (str.equals(key)) {
+					str = decoder.get(key);
+				}
 			}
 			
 			//add word to final string
@@ -212,6 +244,8 @@ public class CorefExample {
 		}
 
 		resolvedStr = cleanOutput(resolvedStr);
+		
+		resolvedStr.replaceAll("â $", "");
 
 		return resolvedStr;
 	}
@@ -223,10 +257,18 @@ public class CorefExample {
 	 */
 	public String cleanOutput(String resolvedStr) {
 		// fix spacing around punctuation
-		String punct = ".,:;!?'";
+		String punct = ".,:;!?'\")]—";
 		for (int i = 1; i < resolvedStr.length(); i++) {
 			if (punct.contains("" + resolvedStr.charAt(i)) && resolvedStr.charAt(i - 1) == ' ') {
 				resolvedStr = resolvedStr.substring(0, i - 1) + resolvedStr.substring(i, resolvedStr.length());
+				i--;
+			}
+		}
+		
+		String punct2 = "([";
+		for (int i = 0; i < resolvedStr.length()-2; i++) {
+			if (punct2.contains("" + resolvedStr.charAt(i)) && resolvedStr.charAt(i + 1) == ' ') {
+				resolvedStr = resolvedStr.substring(0, i+1) + resolvedStr.substring(i+2, resolvedStr.length());
 				i--;
 			}
 		}
@@ -272,8 +314,8 @@ public class CorefExample {
 	 * @throws IOException
 	 */
 	private static String readFile(String pathname) throws IOException {
-
-		try(BufferedReader br = new BufferedReader(new FileReader(pathname))) {
+		Reader reader = new InputStreamReader(new FileInputStream(pathname), "UTF-8");
+		try(BufferedReader br = new BufferedReader(reader)) {
 		    StringBuilder sb = new StringBuilder();
 		    String line = br.readLine();
 
@@ -284,7 +326,66 @@ public class CorefExample {
 		    }
 		    String everything = sb.toString();
 		    
+		    everything = everything.trim();
 		    return everything;
 		}
+	}
+	
+	/**
+	 * Replaces special characters contained in charsToReplace with their corresponding characters.
+	 * @param pathname - text file to parse
+	 * @throws IOException
+	 */
+	private static void replaceSpecialCharacters(String pathname) throws IOException {
+		String content = readFile(pathname);
+		Writer writer = new OutputStreamWriter(new FileOutputStream(pathname), "UTF-8");
+		for (int i = 0; i < content.length(); i++) {
+			String str = content.substring(i, i+1);
+			for (String key : charsToReplace.keySet()) {
+				if (str.equals(key)) {
+					str = charsToReplace.get(key);
+				}
+			}
+			
+			writer.write(str);
+		}
+		
+		writer.close();
+	}
+	
+	/**
+	 * Fills charsToReplace with special character string pairs.
+	 */
+	private static void fillCharsToReplace() {
+		charsToReplace.put("—", "--");
+		charsToReplace.put("½", "1/2");
+		charsToReplace.put("¼", "1/4");
+		charsToReplace.put("`", "'");
+		charsToReplace.put("’", "'");
+		charsToReplace.put("‘", "'");
+		charsToReplace.put("“", "\"");
+		charsToReplace.put("”", "\"");
+	}
+	
+	/**
+	 * Prints all representative mentions for each coref chain in a particular file. (For testing.)
+	 * @param filename - input text file
+	 * @param pipeline - StanfordCoreNLP object
+	 * @throws IOException
+	 */
+	private static void getRepresentativeMentions(String filename, StanfordCoreNLP pipeline) throws IOException {
+		String content = readFile(filename);
+		//System.out.println(content);
+		Annotation doc = new Annotation(content);
+		pipeline.annotate(doc);
+
+		Map<Integer, CorefChain> corefs = doc.get(CorefChainAnnotation.class);
+		for (Integer k : corefs.keySet()) {
+			CorefChain cc = corefs.get(k);
+			
+			System.out.println("\n" + cc.toString());
+			System.out.println(cc.getRepresentativeMention().mentionSpan + ", headID:" + cc.getRepresentativeMention().headIndex + ", sent:" + cc.getRepresentativeMention().sentNum);
+		}
+		
 	}
 }

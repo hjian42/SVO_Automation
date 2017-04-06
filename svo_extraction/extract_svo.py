@@ -16,3 +16,4 @@ def extract():
 		print matchobj
 		with open('svo.txt','w') as out:
 			out.write(matchobj)
+
