@@ -5,7 +5,8 @@ import glob
 import os
 import string
 
-PATH = '/Users/apple/Desktop/clausie/100out'
+PATH = '/Users/apple/Desktop/clausie/10out'
+NUM_SENT = 0
 
 def isSentence(sentence):
     if len(sentence.split()) < 5:
@@ -31,8 +32,6 @@ def isSentence(sentence):
     return True
 
 
-# In[62]:
-
 def isTitle(sentence):
 	if sentence[-1] not in string.punctuation:
 		if len(sentence) < Title_length_limit:
@@ -55,8 +54,8 @@ def run():
 					line = line.replace(u"â $ ™", "'")
 					line = line.replace(u'â $', '').replace(u'œ', '').replace("''", '').replace("``", '')
 					line = line.replace(u"¦", '').replace(u"™", '').strip()
-					print(line)
-					print('\n')
+					# print(line)
+					# print('\n')
 					if isSentence(line):
 						out.write(line.encode('utf-8'))
 						out.write(' ')
@@ -64,6 +63,9 @@ def run():
 	with open('cleaned_corenlp_lynching.txt', 'r') as f:
 		sentences = f.read()
 		sentences = sent_tokenize(sentences.decode('utf-8'))
+		NUM_SENT = len(sentences)
+		print('There are %d number of sentences from the dataset to be fed into ClausIE.' % (NUM_SENT))
 		with open('clausie_input.txt','w') as out:
 			for i,sentence in enumerate(sentences):
 				out.write('%d\t%s\n'% (i, sentence.encode('utf-8'))) 
+	return NUM_SENT
