@@ -1,0 +1,1 @@
+sh ./clausie.sh -vlf /data/sentences-test.txt -o /tmp/sentences-test-out.txt

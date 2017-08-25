@@ -1,0 +1,1154 @@
+# CLAUSE DETECTION
+#   Dict. copular        : 25 (be, prove, sound, ...)
+#   Dict. ext-copular    : 31 (love, be, prove, ...)
+#   Dict. not ext.-cop.  : 2 (die, walk)
+#   Dict. complex trans. : 15 (set, lay, bring, ...)
+#   Dict. ignored adverb : 6 (as, thus, even, ...)
+#   Dict. included adverb: 5 (seldom, barely, scarcely, ...)
+#   Dict. conj adverbs   : 0
+#   Conservative SVA     : true
+#   Conservative SVOA    : false
+#   Process all verb CCs : true
+#   Process non-verb CCs : false
+#   Process appositions  : true
+#   Process possessives  : true
+#   Process partmods     : true
+# 
+# REPRESENTATION
+#   n-ary propositions  : false
+#   Min. opt. args      : 0
+#   Max. opt. args      : 1
+#   Lemmatize           : false
+#   Appositions verb    : "is"
+#   Possessive verb     : "has"
+# Line 1 (id 0): Bud1 % @ E % DSDB ` @ Latter Was promptly Lynched by Infuriated Mob of Whites.
+# Semantic graph: [Lynched/VBN
+#                  nsubjpass:[%/NN num:Bud1/CD]
+#                  dep:[DSDB/VBD dep:@/SYM nsubj:[%/NN num:E/CD] dep:@/SYM]
+#                  nsubjpass:Latter/NNP
+#                  auxpass:Was/VBD
+#                  advmod:promptly/RB
+#                  prep:[by/IN pobj:[Mob/NNP nn:Infuriated/NNP prep:[of/IN pobj:Whites/NNP]]]]
+#   Detected 3 clause(s).
+#   - SV (V: DSDB@6, S: %@5)
+#   - SVA (V: Lynched@12, S: %@2, A?: promptly@11, A!: by@13)
+#   - SVA (V: Lynched@12, S: Latter@9, A?: promptly@11, A!: by@13)
+0	"E %"	"DSDB"
+0	"Bud1 %"	"Latter Was Lynched"	"by Infuriated Mob of Whites promptly"
+0	"Bud1 %"	"Latter Was Lynched"	"by Infuriated Mob of Whites"
+0	"Latter"	"Bud1 % Was Lynched"	"by Infuriated Mob of Whites promptly"
+0	"Latter"	"Bud1 % Was Lynched"	"by Infuriated Mob of Whites"
+# Line 2 (id 1): Shooting Occurred at Arlington Last Night -- Parents of M. L. Dudley, the White Man Who Was Shot, Live in Albany.
+# Semantic graph: [Occurred/NNP
+#                  nn:Shooting/NNP
+#                  prep:[at/IN pobj:[Night/NN nn:Arlington/NNP amod:Last/JJ]]
+#                  dep:[Parents/NNS
+#                       prep:[of/IN
+#                             pobj:[Dudley/NNP
+#                                   nn:M./NNP
+#                                   nn:L./NNP
+#                                   appos:[Man/NNP
+#                                          det:the/DT
+#                                          nn:White/NNP
+#                                          rcmod:[Live/NNP
+#                                                 nsubj:Who/WP
+#                                                 cop:Was/VBD
+#                                                 nn:Shot/NNP
+#                                                 prep:[in/IN pobj:Albany/NNP]]]]]]]
+#   Detected 2 clause(s).
+#   - SVC (S: Dudley@12, V: "is", C: Man@16)
+#   - SVC (C: Live@21, V: Was@18, S: Man@16, A?: in@22)
+1	"M. L. Dudley"	"is"	"the White Man"
+1	"the White Man"	"Was"	"Shot Live in Albany"
+1	"the White Man"	"Was"	"Shot Live"
+# Line 3 (id 2): [unable to read the rest] The story of the lynching of three Negroes at Leesburg on Saturday night is told in our local columns today.
+# Semantic graph: [told/VBN
+#                  nsubjpass:[Saturday/NNP
+#                             amod:[unable/JJ
+#                                   xcomp:[read/VB
+#                                          aux:to/TO
+#                                          dobj:[rest/NN det:the/DT]
+#                                          advmod:[on/IN
+#                                                  npadvmod:[story/NN
+#                                                            det:The/DT
+#                                                            prep:[of/IN
+#                                                                  pobj:[lynching/NN
+#                                                                        det:the/DT
+#                                                                        prep:[of/IN
+#                                                                              pobj:[Negroes/NNS
+#                                                                                    num:three/CD
+#                                                                                    prep:[at/IN
+#                                                                                          pobj:Leesburg/NNP]]]]]]]]]]
+#                  nsubjpass:night/NN
+#                  auxpass:is/VBZ
+#                  prep:[in/IN pobj:[columns/NNS poss:our/PRP$ amod:local/JJ]]
+#                  tmod:today/NN]
+#   Detected 3 clause(s).
+#   - SVA (V: told@22, S: Saturday@19, A!: in@23, A?: today@27)
+#   - SVA (V: told@22, S: night@20, A!: in@23, A?: today@27)
+#   - SVO (S: our@24, V: "has", O: columns@26)
+2	"unable to read the rest The story of the lynching of three Negroes at Leesburg on Saturday"	"night is told"	"in our local columns today"
+2	"unable to read the rest The story of the lynching of three Negroes at Leesburg on Saturday"	"night is told"	"in our local columns"
+2	"night"	"unable to read the rest The story of the lynching of three Negroes at Leesburg on Saturday is told"	"in our local columns today"
+2	"night"	"unable to read the rest The story of the lynching of three Negroes at Leesburg on Saturday is told"	"in our local columns"
+2	"our"	"has"	"local columns"
+# Line 4 (id 3): The conservative press of the country is expected to deprecate, and even denounce in the strongest terms, these outbreaks of lawlessness, but so long as such outrageous crimes as the one of which Mr. And Mrs. Maroney, of Lee county, were the victims are committed in civilized communities, and the officers of the law and the judges of our's courts are dilatory about apprehending the criminals and bringing them to speedy trial, it must be expected that in such aggravated cases as the one in Lee county the people will now and then rise in the people's wrath and take the execution of the law into the people's own hands.
+# Semantic graph: [expected/VBN
+#                  nsubjpass:[press/NN
+#                             det:The/DT
+#                             amod:conservative/JJ
+#                             prep:[of/IN pobj:[country/NN det:the/DT]]]
+#                  auxpass:is/VBZ
+#                  xcomp:[deprecate/VB
+#                         aux:to/TO
+#                         cc:and/CC
+#                         advmod:even/RB
+#                         conj:[denounce/VB
+#                               prep:[in/IN
+#                                     pobj:[terms/NNS
+#                                           det:the/DT
+#                                           amod:strongest/JJS
+#                                           appos:[outbreaks/NNS
+#                                                  det:these/DT
+#                                                  prep:[of/IN pobj:lawlessness/NNS]]]]]]
+#                  cc:but/CC
+#                  conj:[expected/VBN
+#                        advmod:[long/RB
+#                                advmod:so/RB
+#                                dep:[committed/VBN
+#                                     mark:as/IN
+#                                     nsubjpass:[crimes/NNS
+#                                                amod:such/JJ
+#                                                amod:outrageous/JJ
+#                                                prep:[as/IN
+#                                                      pobj:[one/NN
+#                                                            det:the/DT
+#                                                            rcmod:[victims/NNS
+#                                                                   rel:[of/IN pobj:which/WDT]
+#                                                                   nsubj:[Maroney/NNP
+#                                                                          nn:[Mr./NNP
+#                                                                              cc:And/CC
+#                                                                              conj:Mrs./NNP]
+#                                                                          prep:[of/IN
+#                                                                                pobj:[county/NN
+#                                                                                      nn:Lee/NNP]]]
+#                                                                   cop:were/VBD
+#                                                                   det:the/DT]]]]
+#                                     auxpass:are/VBP
+#                                     prep:[in/IN pobj:[communities/NNS amod:civilized/JJ]]
+#                                     cc:and/CC
+#                                     conj:[dilatory/JJ
+#                                           nsubj:[officers/NNS
+#                                                  det:the/DT
+#                                                  prep:[of/IN
+#                                                        pobj:[law/NN
+#                                                              det:the/DT
+#                                                              cc:and/CC
+#                                                              conj:[judges/NNS
+#                                                                    det:the/DT
+#                                                                    prep:[of/IN
+#                                                                          pobj:[courts/NNS
+#                                                                                poss:our/PRP$
+#                                                                                nn:'s/NNP]]]]]]
+#                                           cop:are/VBP
+#                                           prep:[about/IN
+#                                                 pcomp:[apprehending/VBG
+#                                                        dobj:[criminals/NNS det:the/DT]
+#                                                        cc:and/CC
+#                                                        conj:[bringing/VBG
+#                                                              dobj:them/PRP
+#                                                              prep:[to/TO
+#                                                                    pobj:[trial/NN
+#                                                                          amod:speedy/JJ]]]]]]]]
+#                        nsubjpass:it/PRP
+#                        aux:must/MD
+#                        auxpass:be/VB
+#                        ccomp:[rise/VB
+#                               complm:that/IN
+#                               prep:[in/IN
+#                                     pobj:[cases/NNS
+#                                           amod:such/JJ
+#                                           amod:aggravated/JJ
+#                                           prep:[as/IN
+#                                                 pobj:[one/NN
+#                                                       det:the/DT
+#                                                       prep:[in/IN pobj:[county/NN nn:Lee/NNP]]]]]]
+#                               nsubj:[people/NNS det:the/DT]
+#                               aux:will/MD
+#                               advmod:[now/RB cc:and/CC conj:then/RB]
+#                               prep:[in/IN
+#                                     pobj:[wrath/NN
+#                                           poss:[people/NNS det:the/DT possessive:'s/POS]]]
+#                               cc:and/CC
+#                               conj:[take/VB
+#                                     dobj:[execution/NN
+#                                           det:the/DT
+#                                           prep:[of/IN pobj:[law/NN det:the/DT]]]
+#                                     prep:[into/IN
+#                                           pobj:[hands/NNS
+#                                                 poss:[people/NNS det:the/DT possessive:'s/POS]
+#                                                 amod:own/JJ]]]]]]
+#   Detected 11 clause(s).
+#   - SVO (V: expected@8, S: press@3, XCOMP: deprecate@10)
+#   - SVC (S: terms@18, V: "is", C: outbreaks@21)
+#   - SVC (C: victims@48, V: were@46, S: Maroney@40, S: of@35)
+#   - SVA (V: committed@50, S: crimes@31, A!: in@51)
+#   - SVO (S: our@65, V: "has", O: courts@67)
+#   - SVC (C: dilatory@69, V: are@68, S: officers@57, A?: about@70)
+#   - SVO (V: expected@84, S: it@81, A?: long@27, CCOMP: rise@102)
+#   - SVA (V: rise@102, S: people@97, A?: in@86, A?: now@99, A!: in@103)
+#   - SVOA (V: take@109, S: people@97, A?: in@86, A?: now@99, O: execution@111, A!: into@115)
+#   - SVO (S: people@105, V: "has", O: wrath@107)
+#   - SVO (S: people@117, V: "has", O: hands@120)
+3	"The conservative press of the country"	"is expected"	"to deprecate"
+3	"The conservative press of the country"	"is expected"	"to denounce in the strongest terms"
+3	"the strongest terms"	"is"	"these outbreaks of lawlessness"
+3	"Mr. And Mrs. Maroney of Lee county"	"were"	"the victims of the one"
+3	"Mr. And Mrs. Maroney of Lee county"	"were"	"the victims"
+3	"such outrageous crimes as the one"	"are committed"	"in civilized communities"
+3	"our"	"has"	"'s courts"
+3	"the officers of the law and the judges of our 's courts"	"are"	"dilatory about apprehending the criminals and bringing them to speedy trial"
+3	"the officers of the law and the judges of our 's courts"	"are"	"dilatory"
+3	"it"	"must be expected"	"that in such aggravated cases as the one in Lee county the people will now and then rise in the people 's wrath and take the execution of the law into the people 's own hands so long as such outrageous crimes as the one are committed in civilized communities and the officers of the law and the judges of our 's courts are dilatory about apprehending the criminals and bringing them to speedy trial"
+3	"it"	"must be expected"	"that in such aggravated cases as the one in Lee county the people will now and then rise in the people 's wrath and take the execution of the law into the people 's own hands"
+3	"the people"	"will rise"	"in the people 's wrath in such aggravated cases as the one in Lee county"
+3	"the people"	"will rise"	"in the people 's wrath now and then"
+3	"the people"	"will rise"	"in the people 's wrath"
+3	"the people"	"will take"	"the execution of the law into the people 's own hands in such aggravated cases as the one in Lee county"
+3	"the people"	"will take"	"the execution of the law into the people 's own hands now and then"
+3	"the people"	"will take"	"the execution of the law into the people 's own hands"
+3	"the people"	"has"	"wrath"
+3	"the people"	"has"	"own hands"
+# Line 5 (id 4): Two considerations doubtless drove the mob which lynched the three men at Leesburg on Saturday night to take the execution of the law into the three men at Leesburg on Saturday's own hands.
+# Semantic graph: [drove/VBD
+#                  nsubj:[considerations/NNS num:Two/CD]
+#                  advmod:doubtless/RB
+#                  dobj:[mob/NN
+#                        det:the/DT
+#                        rcmod:[lynched/VBD
+#                               nsubj:which/WDT
+#                               dobj:[men/NNS
+#                                     det:the/DT
+#                                     num:three/CD
+#                                     prep:[at/IN
+#                                           pobj:[Leesburg/NNP prep:[on/IN pobj:Saturday/NNP]]]]
+#                               tmod:night/NN
+#                               xcomp:[take/VB
+#                                      aux:to/TO
+#                                      dobj:[execution/NN
+#                                            det:the/DT
+#                                            prep:[of/IN pobj:[law/NN det:the/DT]]]
+#                                      prep:[into/IN pobj:[men/NNS det:the/DT num:three/CD]]
+#                                      prep:[at/IN
+#                                            pobj:[Leesburg/NNP
+#                                                  prep:[on/IN
+#                                                        pobj:[hands/NNS
+#                                                              poss:[Saturday/NNP
+#                                                                    possessive:'s/POS]
+#                                                              amod:own/JJ]]]]]]]]
+#   Detected 3 clause(s).
+#   - SVO (V: drove@4, S: considerations@2, A?: doubtless@3, O: mob@6)
+#   - SVOC (V: lynched@8, S: mob@6, O: men@11, A?: night@16, XCOMP: take@18)
+#   - SVO (S: Saturday@31, V: "has", O: hands@34)
+4	"Two considerations"	"drove"	"the mob doubtless"
+4	"Two considerations"	"drove"	"the mob"
+4	"the mob"	"lynched"	"the three men at Leesburg on Saturday night to take the execution of the law into the three men at Leesburg on Saturday 's own hands"
+4	"the mob"	"lynched"	"the three men at Leesburg on Saturday night to take the execution of the law into the three men"
+4	"the mob"	"lynched"	"the three men at Leesburg on Saturday to take the execution of the law into the three men at Leesburg on Saturday 's own hands"
+4	"the mob"	"lynched"	"the three men at Leesburg on Saturday to take the execution of the law into the three men"
+4	"Saturday"	"has"	"own hands"
+# Line 6 (id 5): First, the law's delay and its uncertainty.
+# Semantic graph: [delay/NN
+#                  advmod:First/RB
+#                  nsubj:[law/NN det:the/DT]
+#                  cop:'s/VBZ
+#                  cc:and/CC
+#                  conj:[uncertainty/NN poss:its/PRP$]]
+#   Detected 2 clause(s).
+#   - SVC (C: delay@6, V: 's@5, S: law@4, A?: First@1)
+#   - SVO (S: its@8, V: "has", O: uncertainty@9)
+5	"the law"	"'s"	"delay and its uncertainty First"
+5	"the law"	"'s"	"delay and its uncertainty"
+5	"its"	"has"	"uncertainty"
+# Line 7 (id 6): The outrage which made justice cry but for the lives of these the three men at Leesburg on Saturday was committed several and yet no steps had been taken to bring its perpetrators to trial, although its perpetrators had been arrested, identified and were in jail.
+# Semantic graph: [committed/VBN
+#                  nsubjpass:[outrage/NN
+#                             det:The/DT
+#                             rcmod:[made/VBD
+#                                    nsubj:which/WDT
+#                                    dobj:[cry/NN nn:justice/NN]
+#                                    prep:[for/IN
+#                                          cc:but/CC
+#                                          pobj:[lives/NNS
+#                                                det:the/DT
+#                                                prep:[of/IN
+#                                                      pobj:[men/NNS
+#                                                            predet:these/DT
+#                                                            det:the/DT
+#                                                            num:three/CD]]]]
+#                                    prep:[at/IN
+#                                          pobj:[Leesburg/NNP prep:[on/IN pobj:Saturday/NNP]]]]]
+#                  auxpass:was/VBD
+#                  advmod:several/JJ
+#                  cc:and/CC
+#                  conj:[taken/VBN
+#                        advmod:yet/RB
+#                        nsubjpass:[steps/NNS det:no/DT]
+#                        aux:had/VBD
+#                        auxpass:been/VBN
+#                        xcomp:[bring/VB
+#                               aux:to/TO
+#                               dobj:[perpetrators/NNS poss:its/PRP$]
+#                               prep:[to/TO pobj:trial/NN]]
+#                        advcl:[arrested/VBN
+#                               mark:although/IN
+#                               nsubjpass:[perpetrators/NNS poss:its/PRP$]
+#                               aux:had/VBD
+#                               auxpass:been/VBN
+#                               conj:identified/VBN
+#                               cc:and/CC
+#                               conj:[were/VBD prep:[in/IN pobj:jail/NN]]]]]
+#   Detected 8 clause(s).
+#   - SVO (V: made@4, S: outrage@2, O: cry@6, A?: for@8, A?: at@16)
+#   - SVA (V: committed@21, S: outrage@2, A!: several@22)
+#   - SVOA (V: taken@29, S: steps@26, A?: yet@24, XCOMP: bring@31, A!: arrested@42)
+#   - SVO (S: its@32, V: "has", O: perpetrators@33)
+#   - SVO (S: its@38, V: "has", O: perpetrators@39)
+#   - SV (V: arrested@42, S: perpetrators@39)
+#   - SV (V: identified@44, S: perpetrators@39)
+#   - SVA (V: were@46, S: perpetrators@39, A!: in@47)
+6	"The outrage"	"made"	"justice cry for but the lives of these the three men"
+6	"The outrage"	"made"	"justice cry at Leesburg on Saturday"
+6	"The outrage"	"made"	"justice cry"
+6	"The outrage"	"was committed"	"several"
+6	"no steps"	"had been taken"	"to bring its perpetrators to trial although its perpetrators had been arrested identified and were in jail yet"
+6	"no steps"	"had been taken"	"to bring its perpetrators to trial although its perpetrators had been arrested identified and were in jail"
+6	"its"	"has"	"perpetrators"
+6	"its"	"has"	"perpetrators"
+6	"its perpetrators"	"had been arrested"
+6	"its perpetrators"	"had been identified"
+6	"its perpetrators"	"had been were"	"in jail"
+# Line 8 (id 7): The Sheriff of the county seems to have done The Sheriff of the county's full duty, but The Sheriff of the county could not convene the court and try the criminals.
+# Semantic graph: [seems/VBZ
+#                  nsubj:[Sheriff/NN det:The/DT prep:[of/IN pobj:[county/NN det:the/DT]]]
+#                  xcomp:[done/VBN
+#                         aux:to/TO
+#                         aux:have/VB
+#                         dobj:[Sheriff/NN
+#                               det:The/DT
+#                               prep:[of/IN
+#                                     pobj:[duty/NN
+#                                           poss:[county/NN det:the/DT possessive:'s/POS]
+#                                           amod:full/JJ]]]]
+#                  cc:but/CC
+#                  conj:[convene/VB
+#                        nsubj:[Sheriff/NN det:The/DT prep:[of/IN pobj:[county/NN det:the/DT]]]
+#                        aux:could/MD
+#                        neg:not/RB
+#                        dobj:[court/NN det:the/DT]
+#                        cc:and/CC
+#                        conj:[try/VB dobj:[criminals/NNS det:the/DT]]]]
+#   Detected 4 clause(s).
+#   - SVC (V: seems@6, S: Sheriff@2, XCOMP: done@9)
+#   - SVO (S: county@14, V: "has", O: duty@17)
+#   - SVO (V: convene@27, S: Sheriff@21, O: court@29)
+#   - SVO (V: try@31, S: Sheriff@21, O: criminals@33)
+7	"The Sheriff of the county"	"seems"	"to have done The Sheriff of the county 's full duty"
+7	"the county"	"has"	"full duty"
+7	"The Sheriff of the county"	"could not convene"	"the court"
+7	"The Sheriff of the county"	"could not try"	"the criminals"
+# Line 9 (id 8): The second and perhaps more acute consideration which prompted the mob to lynch the three Negroes at Leesburg on Saturday was to save the lady who was the victim of the most heinous feature of the crime the embarrassment of having to go into court and tell the revolting story and of having to submit to the inevitable cross-questioning of the learned and aggressive counsel for the defense.
+# Semantic graph: [was/VBD
+#                  nsubj:[consideration/NN
+#                         det:The/DT
+#                         amod:[second/JJ
+#                               cc:and/CC
+#                               conj:[acute/JJ advmod:perhaps/RB advmod:more/RBR]]
+#                         rcmod:[prompted/VBD
+#                                nsubj:which/WDT
+#                                dobj:[mob/NN
+#                                      det:the/DT
+#                                      infmod:[lynch/VB
+#                                              aux:to/TO
+#                                              dobj:[Negroes/NNS
+#                                                    det:the/DT
+#                                                    num:three/CD
+#                                                    prep:[at/IN pobj:Leesburg/NNP]]
+#                                              prep:[on/IN pobj:Saturday/NNP]]]]]
+#                  xcomp:[save/VB
+#                         aux:to/TO
+#                         iobj:[lady/NN
+#                               det:the/DT
+#                               rcmod:[victim/NN
+#                                      nsubj:who/WP
+#                                      cop:was/VBD
+#                                      det:the/DT
+#                                      prep:[of/IN
+#                                            pobj:[feature/NN
+#                                                  det:the/DT
+#                                                  advmod:most/RBS
+#                                                  amod:heinous/JJ
+#                                                  prep:[of/IN pobj:[crime/NN det:the/DT]]]]]]
+#                         dobj:[embarrassment/NN det:the/DT]
+#                         prep:[of/IN
+#                               pcomp:[having/VBG
+#                                      xcomp:[go/VB
+#                                             aux:to/TO
+#                                             prep:[into/IN pobj:court/NN]
+#                                             cc:and/CC
+#                                             conj:[tell/VB
+#                                                   dobj:[story/NN det:the/DT amod:revolting/VBG]]]]
+#                               cc:and/CC
+#                               conj:[of/IN
+#                                     pcomp:[having/VBG
+#                                            xcomp:[submit/VB
+#                                                   aux:to/TO
+#                                                   prep:[to/TO
+#                                                         pobj:[cross-questioning/NN
+#                                                               det:the/DT
+#                                                               amod:inevitable/JJ
+#                                                               prep:[of/IN
+#                                                                     pobj:[counsel/NN
+#                                                                           det:the/DT
+#                                                                           amod:[learned/JJ
+#                                                                                 cc:and/CC
+#                                                                                 conj:aggressive/JJ]
+#                                                                           prep:[for/IN
+#                                                                                 pobj:[defense/NN
+#                                                                                       det:the/DT]]]]]]]]]]]]
+#   Detected 3 clause(s).
+#   - SVO (V: prompted@9, S: consideration@7, O: mob@11)
+#   - SVC (V: was@21, S: consideration@7, XCOMP: save@23)
+#   - SVC (C: victim@29, V: was@27, S: lady@25, A?: of@30)
+8	"The second and perhaps more acute consideration"	"prompted"	"the mob to lynch the three Negroes at Leesburg on Saturday"
+8	"The second and perhaps more acute consideration"	"was"	"to save the lady the embarrassment of having to go into court and tell the revolting story and of having to submit to the inevitable cross-questioning of the learned and aggressive counsel for the defense"
+8	"The second and perhaps more acute consideration"	"was"	"to save the lady the embarrassment"
+8	"the lady"	"was"	"the victim of the most heinous feature of the crime"
+8	"the lady"	"was"	"the victim"
+# Line 10 (id 9): The Leesburg affairs of Saturday night is one that is to be deplored by all law abiding citizens, but so long as there are brutes in the country who dare to commit such crimes as the one which has cost these three Negroes these three Negroes's lives Judge Lynch will be liable to get in Judge Lynch's merciless work now and then.
+# Semantic graph: [one/CD
+#                  nsubj:[affairs/NNS det:The/DT amod:Leesburg/JJ prep:[of/IN pobj:Saturday/NNP]]
+#                  nsubj:night/NN
+#                  cop:is/VBZ
+#                  rcmod:[is/VBZ
+#                         nsubj:that/WDT
+#                         dep:[deplored/VBN
+#                              aux:to/TO
+#                              auxpass:be/VB
+#                              prep:[by/IN
+#                                    pobj:[law/NN
+#                                          det:all/DT
+#                                          partmod:[abiding/VBG dobj:citizens/NNS]]]
+#                              cc:but/CC
+#                              conj:[long/RB
+#                                    advmod:so/RB
+#                                    ccomp:[are/VBP
+#                                           mark:as/IN
+#                                           expl:there/EX
+#                                           acomp:[brutes/JJ
+#                                                  prep:[in/IN
+#                                                        pobj:[country/NN
+#                                                              det:the/DT
+#                                                              rcmod:[dare/VBP
+#                                                                     nsubj:who/WP
+#                                                                     xcomp:[commit/VB
+#                                                                            aux:to/TO
+#                                                                            dobj:[crimes/NNS
+#                                                                                  amod:such/JJ]
+#                                                                            prep:[as/IN
+#                                                                                  pobj:[one/NN
+#                                                                                        det:the/DT
+#                                                                                        rcmod:[cost/VBN
+#                                                                                               nsubj:which/WDT
+#                                                                                               aux:has/VBZ
+#                                                                                               iobj:[Negroes/NNS
+#                                                                                                     det:these/DT
+#                                                                                                     num:three/CD]
+#                                                                                               dobj:[lives/NNS
+#                                                                                                     poss:[Negroes/NNS
+#                                                                                                           det:these/DT
+#                                                                                                           num:three/CD
+#                                                                                                           possessive:'s/POS]
+#                                                                                                     rcmod:[liable/JJ
+#                                                                                                            nsubj:[Lynch/NNP
+#                                                                                                                   nn:Judge/NNP]
+#                                                                                                            aux:will/MD
+#                                                                                                            cop:be/VB
+#                                                                                                            xcomp:[get/VB
+#                                                                                                                   aux:to/TO
+#                                                                                                                   prep:[in/IN
+#                                                                                                                         pobj:[work/NN
+#                                                                                                                               poss:[Lynch/NNP
+#                                                                                                                                     nn:Judge/NNP
+#                                                                                                                                     possessive:'s/POS]
+#                                                                                                                               nn:merciless/NNS]]
+#                                                                                                                   advmod:now/RB]]]]]]]]]]]]]
+#                              cc:and/CC
+#                              conj:then/RB]]]
+#   Detected 9 clause(s).
+#   - SVC (C: one@8, V: is@7, S: affairs@3)
+#   - SVC (C: one@8, V: is@7, S: night@6)
+#   - SV (V: is@10, S: one@8)
+#   - SVA (V: "be abiding", S: law@16, O: citizens@18)
+#   - SVO (V: dare@31, S: country@29, XCOMP: commit@33)
+#   - SVOO (V: cost@41, S: one@38, IO: Negroes@44, O: lives@49)
+#   - SVO (S: Negroes@47, V: "has", O: lives@49)
+#   - SVOC (C: liable@54, V: be@53, S: Lynch@51, XCOMP: get@56, O: lives@49)
+#   - SVO (S: Lynch@59, V: "has", O: work@62)
+9	"The Leesburg affairs of Saturday"	"is"	"one"
+9	"night"	"is"	"one"
+9	"one"	"is"
+9	"all law"	"be abiding"	"citizens"
+9	"the country"	"dare"	"to commit such crimes as the one"
+9	"the country"	"dare"	"to commit such crimes"
+9	"the one"	"has cost"	"these three Negroes these three Negroes 's lives"
+9	"these three Negroes"	"has"	"lives"
+9	"Judge Lynch"	"will be"	"liable to get in Judge Lynch 's merciless work now these three Negroes 's lives"
+9	"Judge Lynch"	"will be"	"liable to get in Judge Lynch 's merciless work these three Negroes 's lives"
+9	"Judge Lynch"	"has"	"merciless work"
+# Line 11 (id 10): One Will Hang And Four Others Go Up For Life Verdicts in the last trials of the famous Miller County murder cases -- Dews Bailey convicted without recommendation, while Florence Bailey and Isaac Garder will serve life sentences -- Five in all convicted.
+# Semantic graph: [Hang/NNP
+#                  nn:One/NNP
+#                  nn:Will/NNP
+#                  cc:And/CC
+#                  conj:[Go/NNP nn:Four/NNP nn:Others/NNPS]
+#                  dep:[For/IN
+#                       dep:Up/IN
+#                       pobj:[Verdicts/NNP
+#                             nn:Life/NNP
+#                             prep:[in/IN
+#                                   pobj:[trials/NNS
+#                                         det:the/DT
+#                                         amod:last/JJ
+#                                         prep:[of/IN
+#                                               pobj:[cases/NNS
+#                                                     det:the/DT
+#                                                     amod:famous/JJ
+#                                                     nn:Miller/NNP
+#                                                     nn:County/NNP
+#                                                     nn:murder/NN]]]]]]
+#                  dep:[Bailey/NNP
+#                       nn:Dews/NNP
+#                       partmod:[convicted/VBN
+#                                prep:[without/IN pobj:recommendation/NN]
+#                                advcl:[serve/VB
+#                                       mark:while/IN
+#                                       nsubj:[Bailey/NNP
+#                                              nn:Florence/NNP
+#                                              cc:and/CC
+#                                              conj:[Garder/NNP nn:Isaac/NNP]]
+#                                       aux:will/MD
+#                                       dobj:[sentences/NNS nn:life/NN]]]]
+#                  dep:[Five/CD prep:[in/IN pobj:[all/DT partmod:convicted/VBN]]]]
+#   Detected 3 clause(s).
+#   - SVA (V: "be convicted", S: Bailey@25, A!: without@27, A?: serve@37)
+#   - SVO (V: serve@37, S: Bailey@32, O: sentences@39)
+#   - SVA (V: "be convicted", S: all@43)
+10	"Dews Bailey"	"be convicted"	"without recommendation while Florence Bailey and Isaac Garder will serve life sentences"
+10	"Dews Bailey"	"be convicted"	"without recommendation"
+10	"Florence Bailey and Isaac Garder"	"will serve"	"life sentences"
+10	"all"	"be convicted"
+# Line 12 (id 11): It will be remembered that Burrell Philips was convicted on Wednesday and old man J. P. Rustin's his son, Virgil Rustin, George, or Coot Philips, on the day following, both being found guilty and sentenced to imprisonment for life.
+# Semantic graph: [remembered/VBN
+#                  nsubjpass:It/PRP
+#                  aux:will/MD
+#                  auxpass:be/VB
+#                  ccomp:[convicted/VBN
+#                         complm:that/IN
+#                         nsubjpass:[Philips/NNP nn:Burrell/NNP]
+#                         auxpass:was/VBD
+#                         prep:[on/IN pobj:Wednesday/NNP]]
+#                  cc:and/CC
+#                  conj:[son/NN
+#                        nsubj:[Rustin/NNP amod:old/JJ nn:man/NN nn:J./NNP nn:P./NNP]
+#                        cop:'s/VBZ
+#                        poss:his/PRP$
+#                        conj:[Rustin/NNP nn:Virgil/NNP]
+#                        conj:George/NNP
+#                        cc:or/CC
+#                        conj:[Philips/NNP nn:Coot/NNP]
+#                        prep:[on/IN
+#                              pobj:[following/NN
+#                                    det:the/DT
+#                                    nn:day/NN
+#                                    appos:[both/DT
+#                                           partmod:[found/VBN
+#                                                    auxpass:being/VBG
+#                                                    acomp:guilty/JJ
+#                                                    cc:and/CC
+#                                                    conj:[sentenced/VBN
+#                                                          prep:[to/TO
+#                                                                pobj:[imprisonment/NN
+#                                                                      prep:[for/IN pobj:life/NN]]]]]]]]]]
+#   Detected 7 clause(s).
+#   - SVO (V: remembered@4, S: It@1, CCOMP: convicted@9)
+#   - SVA (V: convicted@9, S: Philips@7, A!: on@10)
+#   - SVC (C: son@20, V: 's@18, S: Rustin@17, A?: on@31)
+#   - SVO (S: his@19, V: "has", O: son@20)
+#   - SVC (S: following@34, V: "is", C: both@36)
+#   - SVA (V: "be found", S: both@36, ACOMP: guilty@39)
+#   - SVA (V: "be found", S: both@36, A!: to@42)
+11	"It"	"will be remembered"	"that Burrell Philips was convicted on Wednesday"
+11	"Burrell Philips"	"was convicted"	"on Wednesday"
+11	"old man J. P. Rustin"	"'s"	"his son Virgil Rustin George or Coot Philips on the day following"
+11	"old man J. P. Rustin"	"'s"	"his son Virgil Rustin George or Coot Philips"
+11	"his"	"has"	"son Virgil Rustin George or Coot Philips on the day following"
+11	"the day following"	"is"	"both being found guilty and sentenced to imprisonment for life"
+11	"both being sentenced to imprisonment for life"	"be found"	"guilty"
+11	"both being sentenced"	"be found"	"to imprisonment for life"
+# Line 13 (id 12): Florence Bailey and Isaac Garder and Florence Bailey were jointly tried on Saturday morning and Isaac Gardner that afternoon.
+# Semantic graph: [tried/VBN
+#                  nsubjpass:[Bailey/NNP
+#                             nn:Florence/NNP
+#                             cc:and/CC
+#                             conj:[Garder/NNP nn:Isaac/NNP]
+#                             cc:and/CC
+#                             conj:[Bailey/NNP nn:Florence/NNP]]
+#                  auxpass:were/VBD
+#                  advmod:jointly/RB
+#                  prep:[on/IN
+#                        pobj:[morning/NN
+#                              nn:Saturday/NNP
+#                              cc:and/CC
+#                              conj:[Gardner/NNP nn:Isaac/NNP]]]
+#                  dobj:[afternoon/NN det:that/DT]]
+#   Detected 1 clause(s).
+#   - SVO (V: tried@11, S: Bailey@2, A?: jointly@10, A?: on@12, O: afternoon@19)
+12	"Florence Bailey and Isaac Garder and Florence Bailey"	"were tried"	"that afternoon jointly"
+12	"Florence Bailey and Isaac Garder and Florence Bailey"	"were tried"	"on Saturday morning and Isaac Gardner that afternoon"
+12	"Florence Bailey and Isaac Garder and Florence Bailey"	"were tried"	"that afternoon"
+# Line 14 (id 13): All through Saturday night, Sunday and Sunday night the two juries remained out, unable to agree.
+# Semantic graph: [unable/JJ
+#                  advmod:[All/DT
+#                          prep:[through/IN
+#                                pobj:[night/NNP
+#                                      nn:Saturday/NNP
+#                                      conj:Sunday/NNP
+#                                      cc:and/CC
+#                                      conj:Sunday/NNP]
+#                                tmod:night/NN]]
+#                  nsubj:[juries/NNS det:the/DT num:two/CD]
+#                  cop:remained/VBD
+#                  prt:out/RP
+#                  xcomp:[agree/VB aux:to/TO]]
+#   Detected 1 clause(s).
+#   - SVC (C: unable@16, V: remained@13, S: juries@12, A?: All@1, XCOMP: agree@18)
+13	"the two juries"	"remained"	"out unable to agree All through Saturday night Sunday and Sunday night"
+13	"the two juries"	"remained"	"out unable to agree"
+# Line 15 (id 14): Early this morning, however, the two juries returned a verdict.
+# Semantic graph: [returned/VBD
+#                  tmod:[morning/NN advmod:Early/RB det:this/DT]
+#                  advmod:however/RB
+#                  nsubj:[juries/NNS det:the/DT num:two/CD]
+#                  dobj:[verdict/NN det:a/DT]]
+#   Detected 1 clause(s).
+#   - SVO (V: returned@10, S: juries@9, A?: morning@3, A?: however@5, O: verdict@12)
+14	"the two juries"	"returned"	"a verdict Early this morning"
+14	"the two juries"	"returned"	"a verdict however"
+14	"the two juries"	"returned"	"a verdict"
+# Line 16 (id 15): The jury before whom the Dews Bailey Florence Bailey and Isaac Garder were tried declared both to be guilty, but recommended Florence to the mercy of the court.
+# Semantic graph: [declared/VBD
+#                  nsubj:[jury/NN
+#                         det:The/DT
+#                         prep:[before/IN
+#                               pcomp:[tried/VBN
+#                                      dobj:whom/WP
+#                                      nsubjpass:[Bailey/NNP
+#                                                 det:the/DT
+#                                                 nn:Dews/NNP
+#                                                 nn:Bailey/NNP
+#                                                 nn:Florence/NNP
+#                                                 cc:and/CC
+#                                                 conj:[Garder/NNP nn:Isaac/NNP]]
+#                                      auxpass:were/VBD]]]
+#                  ccomp:[guilty/JJ dep:both/DT aux:to/TO cop:be/VB]
+#                  cc:but/CC
+#                  conj:[recommended/VBD
+#                        dobj:Florence/NNP
+#                        prep:[to/TO
+#                              pobj:[mercy/NN det:the/DT prep:[of/IN pobj:[court/NN det:the/DT]]]]]]
+#   Detected 3 clause(s).
+#   - SVO (V: tried@14, S: Bailey@9, O: whom@4)
+#   - SVO (V: declared@15, S: jury@2, CCOMP: guilty@19)
+#   - SVO (V: recommended@22, S: jury@2, O: Florence@23, A?: to@24)
+15	"the Dews Bailey Florence Bailey and Isaac Garder"	"were tried"	"whom"
+15	"The jury before whom the Dews Bailey Florence Bailey and Isaac Garder were tried"	"declared"	"both to be guilty"
+15	"The jury before whom the Dews Bailey Florence Bailey and Isaac Garder were tried"	"recommended"	"Florence to the mercy of the court"
+15	"The jury before whom the Dews Bailey Florence Bailey and Isaac Garder were tried"	"recommended"	"Florence"
+# Line 17 (id 16): Isaac Gardner was found guilty by the other jury but recommended Isaac Gardner mercy.
+# Semantic graph: [found/VBN
+#                  nsubjpass:[Gardner/NNP nn:Isaac/NNP]
+#                  auxpass:was/VBD
+#                  acomp:guilty/JJ
+#                  prep:[by/IN pobj:[jury/NN det:the/DT amod:other/JJ]]
+#                  cc:but/CC
+#                  conj:[recommended/VBD dobj:[mercy/NN nn:Isaac/NNP nn:Gardner/NNP]]]
+#   Detected 2 clause(s).
+#   - SVC (V: found@4, S: Gardner@2, ACOMP: guilty@5, A?: by@6)
+#   - SVO (V: recommended@11, S: Gardner@2, O: mercy@14)
+16	"Isaac Gardner"	"was found"	"guilty by the other jury"
+16	"Isaac Gardner"	"was found"	"guilty"
+16	"Isaac Gardner"	"recommended"	"Isaac Gardner mercy"
+# Line 18 (id 17): Isaac Gardner, together with Florence Bailey, will today be sentenced to life imprisonment by Judge Sheffield and Dews Bailey will have the sentence of death passed upon Isaac Gardner.
+# Semantic graph: [sentenced/VBN
+#                  nsubjpass:[Gardner/NNP nn:Isaac/NNP]
+#                  dep:[with/IN dep:together/RB pobj:[Bailey/NNP nn:Florence/NNP]]
+#                  aux:will/MD
+#                  advmod:today/NN
+#                  auxpass:be/VB
+#                  prep:[to/TO pobj:[imprisonment/NN nn:life/NN]]
+#                  prep:[by/IN pobj:[Sheffield/NNP nn:Judge/NNP]]
+#                  cc:and/CC
+#                  conj:[have/VB
+#                        nsubj:[Bailey/NNP nn:Dews/NNP]
+#                        aux:will/MD
+#                        dobj:[sentence/NN
+#                              det:the/DT
+#                              prep:[of/IN
+#                                    pobj:[death/NN
+#                                          partmod:[passed/VBN
+#                                                   prep:[upon/IN
+#                                                         pobj:[Gardner/NNP nn:Isaac/NNP]]]]]]]]
+#   Detected 3 clause(s).
+#   - SVA (V: sentenced@12, S: Gardner@2, A?: today@10, A!: to@13, A?: by@16)
+#   - SVO (V: have@23, S: Bailey@21, O: sentence@25)
+#   - SVA (V: "be passed", S: death@27, A!: upon@29)
+17	"Isaac Gardner"	"will be sentenced"	"to life imprisonment today"
+17	"Isaac Gardner"	"will be sentenced"	"to life imprisonment by Judge Sheffield"
+17	"Isaac Gardner"	"will be sentenced"	"to life imprisonment"
+17	"Dews Bailey"	"will have"	"the sentence of death passed upon Isaac Gardner"
+17	"death"	"be passed"	"upon Isaac Gardner"
+# Line 19 (id 18): The Murderer Had Been Given A Preliminary Trial and Bail Was Refused -- Officers on The Murderer's Way to Cuthbert Jail Overtaken by a Mob -- Great Excitement Prevails.
+# Semantic graph: [Given/VBN
+#                  nsubjpass:[Murderer/NNP det:The/DT]
+#                  aux:Had/VBD
+#                  auxpass:Been/VBN
+#                  xcomp:[Trial/NN
+#                         det:A/DT
+#                         amod:Preliminary/JJ
+#                         cc:and/CC
+#                         conj:[Refused/NNP nn:Bail/NNP nn:Was/NNP]
+#                         dep:[Officers/NNS
+#                              prep:[on/IN
+#                                    pobj:[Jail/NN
+#                                          poss:[Murderer/NNP det:The/DT possessive:'s/POS]
+#                                          dep:[Way/NN prep:[to/TO pobj:Cuthbert/NNP]]]]
+#                              partmod:[Overtaken/VBN prep:[by/IN pobj:[Mob/NN det:a/DT]]]]
+#                         dep:[Prevails/NNP nn:Great/NNP nn:Excitement/NNP]]]
+#   Detected 3 clause(s).
+#   - SVO (V: Given@5, S: Murderer@2, XCOMP: Trial@8)
+#   - SVA (V: "be Overtaken", S: Officers@14, A!: by@24)
+#   - SVO (S: Murderer@17, V: "has", O: Jail@22)
+18	"The Murderer"	"Had Been Given"	"A Preliminary Trial"
+18	"The Murderer"	"Had Been Given"	"Bail Was Refused"
+18	"Officers on The Murderer 's Way to Cuthbert Jail"	"be Overtaken"	"by a Mob"
+18	"The Murderer"	"has"	"Way to Cuthbert Jail"
+# Line 20 (id 19): -- Sherman Harris, the negro who killed Mr. Sid King at Knighton, a country postoffice ten miles below this place, on Monday afternoon, was lynched last night.
+# Semantic graph: [lynched/VBN
+#                  nsubjpass:[Harris/NNP
+#                             nn:Sherman/NNP
+#                             appos:[negro/NN
+#                                    det:the/DT
+#                                    rcmod:[killed/VBD
+#                                           nsubj:who/WP
+#                                           dobj:[King/NNP
+#                                                 nn:Mr./NNP
+#                                                 nn:Sid/NNP
+#                                                 prep:[at/IN
+#                                                       pobj:[Knighton/NNP
+#                                                             appos:[postoffice/NN
+#                                                                    det:a/DT
+#                                                                    nn:country/NN]]]]
+#                                           prep:[below/IN
+#                                                 npadvmod:[miles/NNS num:ten/CD]
+#                                                 pobj:[place/NN det:this/DT]]
+#                                           prep:[on/IN pobj:[afternoon/NN nn:Monday/NNP]]]]]
+#                  auxpass:was/VBD
+#                  tmod:[night/NN amod:last/JJ]]
+#   Detected 4 clause(s).
+#   - SVC (S: Harris@3, V: "is", C: negro@6)
+#   - SVO (V: killed@8, S: negro@6, O: King@11, A?: below@20, A?: on@24)
+#   - SVC (S: Knighton@13, V: "is", C: postoffice@17)
+#   - SVA (V: lynched@29, S: Harris@3, A!: night@31)
+19	"Sherman Harris"	"is"	"the negro"
+19	"the negro"	"killed"	"Mr. Sid King at Knighton below ten miles this place"
+19	"the negro"	"killed"	"Mr. Sid King at Knighton on Monday afternoon"
+19	"the negro"	"killed"	"Mr. Sid King at Knighton"
+19	"Knighton"	"is"	"a country postoffice"
+19	"Sherman Harris"	"was lynched"	"last night"
+# Line 21 (id 20): The particulars, as your correspondent can learn The particulars, are that Mr. Sid King at Knighton, a country postoffice had a quarrel with the negro about a week prior to the killing.
+# Semantic graph: [are/VBP
+#                  nsubj:[particulars/NNS
+#                         det:The/DT
+#                         dep:[learn/VB
+#                              mark:as/IN
+#                              nsubj:[correspondent/NN poss:your/PRP$]
+#                              aux:can/MD
+#                              dobj:[particulars/NNS det:The/DT]]]
+#                  ccomp:[had/VBD
+#                         complm:that/IN
+#                         nsubj:[King/NNP
+#                                nn:Mr./NNP
+#                                nn:Sid/NNP
+#                                prep:[at/IN
+#                                      pobj:[Knighton/NNP
+#                                            appos:[postoffice/NN det:a/DT nn:country/NN]]]]
+#                         dobj:[quarrel/NN det:a/DT prep:[with/IN pobj:[negro/NN det:the/DT]]]
+#                         tmod:[week/NN advmod:about/RB det:a/DT]
+#                         prep:[to/TO advmod:prior/RB pobj:[killing/NN det:the/DT]]]]
+#   Detected 5 clause(s).
+#   - SVO (S: your@5, V: "has", O: correspondent@6)
+#   - SVO (V: learn@8, S: correspondent@6, O: particulars@10)
+#   - SVC (V: are@12, S: particulars@2, CCOMP: had@23)
+#   - SVC (S: Knighton@18, V: "is", C: postoffice@22)
+#   - SVO (V: had@23, S: King@16, O: quarrel@25, A?: week@31, A?: to@33)
+20	"your"	"has"	"correspondent"
+20	"your correspondent"	"can learn"	"The particulars"
+20	"The particulars as your correspondent can learn The particulars"	"are"	"that Mr. Sid King at Knighton had a quarrel with the negro about a week prior to the killing"
+20	"Knighton"	"is"	"a country postoffice"
+20	"Mr. Sid King at Knighton"	"had"	"a quarrel with the negro about a week"
+20	"Mr. Sid King at Knighton"	"had"	"a quarrel with the negro prior to the killing"
+20	"Mr. Sid King at Knighton"	"had"	"a quarrel with the negro"
+# Line 22 (id 21): Since that time Harris has been going armed, and making threats as to what Harris intended to do to King.
+# Semantic graph: [going/VBG
+#                  prep:[Since/IN pobj:[time/NN det:that/DT]]
+#                  nsubj:Harris/NNP
+#                  aux:has/VBZ
+#                  aux:been/VBN
+#                  acomp:armed/JJ
+#                  cc:and/CC
+#                  conj:[making/VBG
+#                        dobj:threats/NNS
+#                        prep:[as/IN
+#                              pcomp:[to/TO
+#                                     pcomp:[intended/VBD
+#                                            dep:what/WP
+#                                            nsubj:Harris/NNP
+#                                            xcomp:[do/VB aux:to/TO prep:[to/TO pobj:King/NNP]]]]]]]
+#   Detected 3 clause(s).
+#   - SVC (V: going@7, S: Harris@4, A?: Since@1, ACOMP: armed@8)
+#   - SVO (V: making@11, S: Harris@4, A?: Since@1, O: threats@12, A?: as@13)
+#   - SVO (V: intended@17, S: Harris@16, XCOMP: do@19)
+21	"Harris"	"has been going"	"armed Since that time"
+21	"Harris"	"has been going"	"armed"
+21	"Harris"	"has been making"	"threats Since that time"
+21	"Harris"	"has been making"	"threats as to what Harris intended to do to King"
+21	"Harris"	"has been making"	"threats"
+21	"Harris"	"intended"	"to do to King"
+# Line 23 (id 22): On learning of these threats, Mr. Sid King at Knighton, a country postoffice went to the plantation of Mr. T. Barfield where Harris was employed, to see Harris.
+# Semantic graph: [went/VBD
+#                  prep:[On/IN
+#                        pcomp:[learning/VBG
+#                               prep:[of/IN
+#                                     pobj:[threats/NNS
+#                                           det:these/DT
+#                                           appos:[King/NNP
+#                                                  nn:Mr./NNP
+#                                                  nn:Sid/NNP
+#                                                  prep:[at/IN pobj:Knighton/NNP]]]]]]
+#                  nsubj:[postoffice/NN det:a/DT nn:country/NN]
+#                  prep:[to/TO
+#                        pobj:[plantation/NN
+#                              det:the/DT
+#                              prep:[of/IN pobj:[Barfield/NNP nn:Mr./NNP nn:T./NNP]]]]
+#                  advcl:[employed/VBN advmod:where/WRB nsubjpass:Harris/NNP auxpass:was/VBD]
+#                  xcomp:[see/VB aux:to/TO dobj:Harris/NNP]]
+#   Detected 3 clause(s).
+#   - SVC (S: threats@5, V: "is", C: King@9)
+#   - SVC (V: went@16, S: postoffice@15, A?: On@1, A?: to@17, A?: employed@27, XCOMP: see@30)
+#   - SV (V: employed@27, S: Harris@25, A?: where@24)
+22	"these threats"	"is"	"Mr. Sid King at Knighton"
+22	"a country postoffice"	"went"	"to see Harris On learning of these threats"
+22	"a country postoffice"	"went"	"to the plantation of Mr. T. Barfield to see Harris"
+22	"a country postoffice"	"went"	"where Harris was employed to see Harris"
+22	"a country postoffice"	"went"	"to see Harris"
+22	"Harris"	"was employed"	"where"
+22	"Harris"	"was employed"
+# Line 24 (id 23): When asked about the reports Harris replied that,  yes Harris had made them and would do what Harris said, whereupon Harris ran into Harris's house nearby, got Harris's shot gun, returned and when near Mr. Sid King at Knighton, a country postoffice fired, the entire load entering Mr. Sid King at Knighton, a country postoffice's leg just above the knee, producing death in about 15 minutes, from loss of blood.
+# Semantic graph: [leg/NN
+#                  advcl:[asked/VBD
+#                         advmod:When/WRB
+#                         prep:[about/IN pobj:[reports/NNS det:the/DT]]
+#                         dep:[replied/VBD
+#                              nsubj:Harris/NNP
+#                              ccomp:[ran/VBD
+#                                     complm:that/IN
+#                                     ccomp:[made/VBN
+#                                            dep:yes/UH
+#                                            nsubj:Harris/NNP
+#                                            aux:had/VBD
+#                                            dobj:them/PRP
+#                                            cc:and/CC
+#                                            conj:[do/VB
+#                                                  aux:would/MD
+#                                                  ccomp:[said/VBD dobj:what/WP nsubj:Harris/NNP]]]
+#                                     nsubj:[Harris/NNP nn:whereupon/NNP]
+#                                     prep:[into/IN
+#                                           pobj:[house/NN poss:[Harris/NNP possessive:'s/POS]]]
+#                                     advmod:nearby/RB
+#                                     dep:[got/VBD
+#                                          dobj:[gun/NN
+#                                                poss:[Harris/NNP possessive:'s/POS]
+#                                                nn:shot/NN]]
+#                                     dep:returned/VBD]
+#                              cc:and/CC
+#                              conj:[fired/VBD
+#                                    advmod:when/WRB
+#                                    prep:[near/IN
+#                                          pobj:[King/NNP
+#                                                nn:Mr./NNP
+#                                                nn:Sid/NNP
+#                                                prep:[at/IN pobj:Knighton/NNP]]]
+#                                    nsubj:[postoffice/NN det:a/DT nn:country/NN]
+#                                    dep:[entering/VBG
+#                                         nsubj:[load/NN det:the/DT amod:entire/JJ]
+#                                         dobj:[King/NNP
+#                                               nn:Mr./NNP
+#                                               nn:Sid/NNP
+#                                               prep:[at/IN pobj:Knighton/NNP]]]]]]
+#                  nsubj:[postoffice/NN det:a/DT nn:country/NN]
+#                  cop:'s/VBZ
+#                  advmod:just/RB
+#                  prep:[above/IN
+#                        pobj:[knee/NN
+#                              det:the/DT
+#                              appos:[death/NN
+#                                     amod:producing/VBG
+#                                     prep:[in/IN
+#                                           pobj:[minutes/NNS num:[15/CD quantmod:about/RB]]]
+#                                     prep:[from/IN pobj:[loss/NN prep:[of/IN pobj:blood/NN]]]]]]]
+#   Detected 11 clause(s).
+#   - SVO (V: replied@7, S: Harris@6, CCOMP: ran@24)
+#   - SVO (V: made@13, S: Harris@11, O: them@14)
+#   - SVO (V: do@17, S: Harris@11, CCOMP: said@20)
+#   - SVO (V: said@20, S: Harris@19, O: what@18)
+#   - SVO (V: ran@24, S: Harris@23, CCOMP: made@13, A?: into@25, A?: nearby@29)
+#   - SVO (S: Harris@26, V: "has", O: house@28)
+#   - SVO (S: Harris@32, V: "has", O: gun@35)
+#   - SV (V: fired@50, S: postoffice@49, A?: when@39, A?: near@40)
+#   - SVO (V: entering@55, S: load@54, O: King@58)
+#   - SVC (C: leg@66, V: 's@65, S: postoffice@64, A?: asked@2, A?: just@67, A?: above@68)
+#   - SVC (S: knee@70, V: "is", C: death@73)
+23	"Harris"	"replied"	"that yes Harris had made them and would do what Harris said whereupon Harris ran into Harris 's house nearby got Harris 's shot gun returned"
+23	"Harris"	"had made"	"them"
+23	"Harris"	"would do"	"what Harris said"
+23	"Harris"	"said"	"what"
+23	"whereupon Harris"	"ran"	"yes Harris had made them and would do what Harris said into Harris 's house"
+23	"whereupon Harris"	"ran"	"yes Harris had made them and would do what Harris said nearby"
+23	"whereupon Harris"	"ran"	"yes Harris had made them and would do what Harris said"
+23	"Harris"	"has"	"house"
+23	"Harris"	"has"	"shot gun"
+23	"a country postoffice"	"fired"	"when"
+23	"a country postoffice"	"fired"	"near Mr. Sid King at Knighton"
+23	"a country postoffice"	"fired"
+23	"the entire load"	"entering"	"Mr. Sid King at Knighton"
+23	"a country postoffice"	"'s"	"leg When asked about the reports Harris replied that yes Harris had made them and would do what Harris said whereupon Harris ran into Harris 's house nearby got Harris 's shot gun returned and when near Mr. Sid King at Knighton a country postoffice fired the entire load entering Mr. Sid King at Knighton"
+23	"a country postoffice"	"'s"	"leg just"
+23	"a country postoffice"	"'s"	"leg above the knee"
+23	"a country postoffice"	"'s"	"leg"
+23	"the knee"	"is"	"producing death in about 15 minutes from loss of blood"
+# Line 25 (id 24): Harris was arrested and given trial before a magistrate Tuesday afternoon and bond denied.
+# Semantic graph: [arrested/VBN
+#                  nsubjpass:Harris/NNP
+#                  auxpass:was/VBD
+#                  cc:and/CC
+#                  conj:given/VBN
+#                  dobj:trial/NN
+#                  prep:[before/IN pobj:[magistrate/NN det:a/DT]]
+#                  tmod:[afternoon/NN nn:Tuesday/NNP]
+#                  cc:and/CC
+#                  conj:[denied/VBD nsubj:bond/NN]]
+#   Detected 3 clause(s).
+#   - SVO (V: arrested@3, S: Harris@1, O: trial@6, A?: before@7, A?: afternoon@11)
+#   - SVO (V: given@5, S: Harris@1, O: trial@6, A?: before@7, A?: afternoon@11)
+#   - SV (V: denied@14, S: bond@13)
+24	"Harris"	"was arrested"	"trial before a magistrate"
+24	"Harris"	"was arrested"	"trial Tuesday afternoon"
+24	"Harris"	"was arrested"	"trial"
+24	"Harris"	"was given"	"trial before a magistrate"
+24	"Harris"	"was given"	"trial Tuesday afternoon"
+24	"Harris"	"was given"	"trial"
+24	"bond"	"denied"
+# Line 26 (id 25): Last night, as the officers were en route to Cuthbert with Harris, the officers were overtaken by a mob of masked citizens, who took the officers's prisoner from the officers; a rope was placed around Harris's neck and Harris was suspended from the limb of a tree nearby, after which Harris was completely riddled with bullets.
+# Semantic graph: [overtaken/VBN
+#                  dep:[night/NN amod:Last/JJ]
+#                  advcl:[were/VBD
+#                         mark:as/IN
+#                         nsubj:[officers/NNS det:the/DT]
+#                         advmod:[en/IN dep:route/NN prep:[to/TO pobj:Cuthbert/NNP]]
+#                         prep:[with/IN pobj:Harris/NNP]]
+#                  nsubjpass:[officers/NNS det:the/DT]
+#                  auxpass:were/VBD
+#                  prep:[by/IN
+#                        pobj:[mob/NN
+#                              det:a/DT
+#                              prep:[of/IN
+#                                    pobj:[citizens/NNS
+#                                          amod:masked/JJ
+#                                          rcmod:[took/VBD
+#                                                 nsubj:who/WP
+#                                                 dobj:[prisoner/NN
+#                                                       poss:[officers/NNS
+#                                                             det:the/DT
+#                                                             possessive:'s/POS]]
+#                                                 prep:[from/IN pobj:[officers/NNS det:the/DT]]]]]]]
+#                  conj:[placed/VBN
+#                        nsubjpass:[rope/NN det:a/DT]
+#                        auxpass:was/VBD
+#                        prep:[around/IN pobj:[neck/NN poss:[Harris/NNP possessive:'s/POS]]]]
+#                  cc:and/CC
+#                  conj:[suspended/VBN
+#                        nsubjpass:Harris/NNP
+#                        auxpass:was/VBD
+#                        prep:[from/IN
+#                              pobj:[limb/NN
+#                                    det:the/DT
+#                                    prep:[of/IN pobj:[tree/NN det:a/DT advmod:nearby/RB]]
+#                                    rcmod:[riddled/JJ
+#                                           rel:[after/IN pobj:which/WDT]
+#                                           nsubj:Harris/NNP
+#                                           aux:was/VBD
+#                                           advmod:completely/RB
+#                                           prep:[with/IN pobj:bullets/NNS]]]]]]
+#   Detected 8 clause(s).
+#   - SVA (V: were@7, S: officers@6, A!: en@8, A?: with@12)
+#   - SVA (V: overtaken@18, S: officers@16, A?: were@7, A!: by@19)
+#   - SVOA (V: took@27, S: citizens@24, O: prisoner@31, A!: from@32)
+#   - SVO (S: officers@29, V: "has", O: prisoner@31)
+#   - SVA (V: placed@39, S: rope@37, A!: around@40)
+#   - SVO (S: Harris@41, V: "has", O: neck@43)
+#   - SVA (V: suspended@47, S: Harris@45, A!: from@48)
+#   - SVA (V: riddled@61, S: Harris@58, S: after@56, A?: completely@60, A?: with@62)
+25	"the officers"	"were"	"en route to Cuthbert with Harris"
+25	"the officers"	"were"	"en route to Cuthbert"
+25	"the officers"	"were overtaken"	"by a mob of masked citizens as the officers were en route to Cuthbert with Harris"
+25	"the officers"	"were overtaken"	"by a mob of masked citizens"
+25	"masked citizens"	"took"	"the officers 's prisoner from the officers"
+25	"the officers"	"has"	"prisoner"
+25	"a rope"	"was placed"	"around Harris 's neck"
+25	"Harris"	"has"	"neck"
+25	"Harris"	"was suspended"	"from the limb of a tree nearby"
+25	"Harris"	"was riddled"	"after the limb of a tree nearby completely"
+25	"Harris"	"was riddled"	"with bullets after the limb of a tree nearby"
+25	"Harris"	"was riddled"	"after the limb of a tree nearby"
+# Line 27 (id 26): Great excitement prevails and further trouble is feared.
+# Semantic graph: [prevails/VBZ
+#                  nsubj:[excitement/NN amod:Great/JJ]
+#                  cc:and/CC
+#                  conj:[feared/VBN nsubjpass:[trouble/NN amod:further/JJ] auxpass:is/VBZ]]
+#   Detected 2 clause(s).
+#   - SV (V: prevails@3, S: excitement@2)
+#   - SV (V: feared@8, S: trouble@6)
+26	"Great excitement"	"prevails"
+26	"further trouble"	"is feared"
+# Line 28 (id 27): Mr. Sid King at Knighton, a country postoffice was a prosperous farmer and merchant and stood high in Mr. Sid King at Knighton, a country postoffice's section.
+# Semantic graph: [farmer/NN
+#                  nsubj:[King/NNP nn:Mr./NNP nn:Sid/NNP]
+#                  prep:[at/IN pobj:[Knighton/NNP appos:[postoffice/NN det:a/DT nn:country/NN]]]
+#                  cop:was/VBD
+#                  det:a/DT
+#                  amod:prosperous/JJ
+#                  cc:and/CC
+#                  conj:merchant/NN
+#                  cc:and/CC
+#                  conj:[stood/VBD
+#                        advmod:high/JJ
+#                        prep:[in/IN
+#                              pobj:[King/NNP
+#                                    nn:Mr./NNP
+#                                    nn:Sid/NNP
+#                                    prep:[at/IN
+#                                          pobj:[Knighton/NNP
+#                                                appos:[section/NN
+#                                                       poss:[postoffice/NN
+#                                                             det:a/DT
+#                                                             nn:country/NN
+#                                                             possessive:'s/POS]]]]]]]]
+#   Detected 5 clause(s).
+#   - SVC (S: Knighton@5, V: "is", C: postoffice@9)
+#   - SVC (C: farmer@13, V: was@10, S: King@3, A?: at@4)
+#   - SVA (V: stood@17, S: King@3, A!: high@18, A?: in@19)
+#   - SVC (S: Knighton@24, V: "is", C: section@30)
+#   - SVO (S: postoffice@28, V: "has", O: section@30)
+27	"Knighton"	"is"	"a country postoffice"
+27	"Mr. Sid King"	"was"	"a prosperous farmer and merchant at Knighton"
+27	"Mr. Sid King"	"was"	"a prosperous farmer and merchant"
+27	"Mr. Sid King"	"stood"	"high in Mr. Sid King at Knighton"
+27	"Mr. Sid King"	"stood"	"high"
+27	"Knighton"	"is"	"a country postoffice 's section"
+27	"a country postoffice"	"has"	"section"
+# Line 29 (id 28): Mr. Sid King at Knighton, a country postoffice leaves a wife and several small children.
+# Semantic graph: [leaves/VBZ
+#                  nsubj:[King/NNP
+#                         nn:Mr./NNP
+#                         nn:Sid/NNP
+#                         prep:[at/IN
+#                               pobj:[Knighton/NNP appos:[postoffice/NN det:a/DT nn:country/NN]]]]
+#                  dobj:[wife/NN
+#                        det:a/DT
+#                        cc:and/CC
+#                        conj:[children/NNS amod:several/JJ amod:small/JJ]]]
+#   Detected 2 clause(s).
+#   - SVC (S: Knighton@5, V: "is", C: postoffice@9)
+#   - SVO (V: leaves@10, S: King@3, O: wife@12)
+28	"Knighton"	"is"	"a country postoffice"
+28	"Mr. Sid King at Knighton"	"leaves"	"a wife and several small children"
+# Line 30 (id 29): The body of Harris at this hour is still hanging to the limb.
+# Semantic graph: [hanging/VBG
+#                  nsubj:[body/NN
+#                         det:The/DT
+#                         prep:[of/IN pobj:[Harris/NNP prep:[at/IN pobj:[hour/NN det:this/DT]]]]]
+#                  aux:is/VBZ
+#                  advmod:still/RB
+#                  prep:[to/TO pobj:[limb/NN det:the/DT]]]
+#   Detected 1 clause(s).
+#   - SVA (V: hanging@10, S: body@2, A?: still@9, A!: to@11)
+29	"The body of Harris at this hour"	"is hanging"	"to the limb still"
+29	"The body of Harris at this hour"	"is hanging"	"to the limb"
+# Line 31 (id 30): Their tracks indicated that Their's number was probably about a dozen.
+# Semantic graph: [indicated/VBD
+#                  nsubj:[tracks/NNS poss:Their/PRP$]
+#                  ccomp:[was/VBD
+#                         complm:that/IN
+#                         nsubj:[number/NN poss:[Their/NNP possessive:'s/POS]]
+#                         advmod:probably/RB
+#                         prep:[about/IN pobj:[dozen/NN det:a/DT]]]]
+#   Detected 4 clause(s).
+#   - SVO (S: Their@1, V: "has", O: tracks@2)
+#   - SVO (V: indicated@3, S: tracks@2, CCOMP: was@8)
+#   - SVO (S: Their@5, V: "has", O: number@7)
+#   - SVA (V: was@8, S: number@7, A!: probably@9, A?: about@10)
+30	"Their"	"has"	"tracks"
+30	"Their tracks"	"indicated"	"that Their 's number was probably about a dozen"
+30	"Their"	"has"	"number"
+30	"Their 's number"	"was"	"probably about a dozen"
+30	"Their 's number"	"was"	"probably"
+# Line 32 (id 31): These facts were brought out at a coroner's inquest held yesterday afternoon.
+# Semantic graph: [brought/VBN
+#                  nsubjpass:[facts/NNS det:These/DT]
+#                  auxpass:were/VBD
+#                  prt:out/RP
+#                  prep:[at/IN
+#                        pobj:[afternoon/NN
+#                              poss:[coroner/NN det:a/DT possessive:'s/POS]
+#                              amod:inquest/JJ
+#                              amod:[held/JJ tmod:yesterday/NN]]]]
+#   Detected 2 clause(s).
+#   - SVA (V: brought@4, S: facts@2, A!: at@6)
+#   - SVO (S: coroner@8, V: "has", O: afternoon@13)
+31	"These facts"	"were brought out"	"at a coroner 's inquest held yesterday afternoon"
+31	"a coroner"	"has"	"inquest held yesterday afternoon"
+# Line 33 (id 32): No arrests have been made, although the officers are at work on the case.
+# Semantic graph: [made/VBN
+#                  nsubjpass:[arrests/NNS det:No/DT]
+#                  aux:have/VBP
+#                  auxpass:been/VBN
+#                  advcl:[are/VBP
+#                         mark:although/IN
+#                         nsubj:[officers/NNS det:the/DT]
+#                         prep:[at/IN pobj:[work/NN prep:[on/IN pobj:[case/NN det:the/DT]]]]]]
+#   Detected 2 clause(s).
+#   - SVA (V: made@5, S: arrests@2, A!: are@10)
+#   - SVA (V: are@10, S: officers@9, A!: at@11)
+32	"No arrests"	"have been made"	"although the officers are at work on the case"
+32	"the officers"	"are"	"at work on the case"
