@@ -33,8 +33,8 @@ The whole pipeline is composed of three steps:
 
 ## Data Visualization
   - output file is ready to be seen by Gephi
-
-            Node1     Edge      Node2
+  
+             Node1     Edge      Node2
         0   people     have      wrath
         1   people     have      hands
         2   county     have       duty
