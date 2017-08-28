@@ -33,7 +33,8 @@ def clean(PATH_IN, PATH_PROCESSED):
 					lst.append(s)
 			sentences = lst
 			sentences = [each.strip() for each in sentences if each.strip()] 
-			filename = filename.split('\\')[-1]
+			# filename = filename.split('\\')[-1]
+			filename = filename.split('/')[-1]
 			file_path = PATH_PROCESSED + '/data%d__%s' % (count, filename)
 			with open(file_path, 'w') as out:
 				for sentence in sentences:

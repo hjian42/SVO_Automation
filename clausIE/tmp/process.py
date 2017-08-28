@@ -9,6 +9,7 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 
 #subprocess.call(['python', 'install.py'])
+# python process.py coref /Users/apple/Desktop/SVO_Automation/clausIE/data/input/ /Users/apple/Desktop/SVO_Automation/clausIE/data/
 
 do_coref = sys.argv[1]
 PATH_IN = sys.argv[2]
