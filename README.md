@@ -29,7 +29,7 @@ The whole pipeline is composed of three steps:
       
       S: mob            , V: estimate       , O: shooting       
       S: girl           , V: protect        , O: negro          
-      S: prisoner       , V: has            , O: neck 
+      S: prisoner       , V: have            , O: neck 
 
 ## Data Visualization
   - output file is ready to be seen by Gephi
