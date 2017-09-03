@@ -27,10 +27,20 @@ The whole pipeline is composed of three steps:
   
   The SVO results will look like the following (verbs are converted into stem, so `estim` means `estimate`):
       
-      S: mob            , V: estim          , O: shooting       
+      S: mob            , V: estimate       , O: shooting       
       S: girl           , V: protect        , O: negro          
-      S: prisoner       , V: has            , O: neck 
+      S: prisoner       , V: have            , O: neck 
+
+## Data Visualization
+  - output file is ready to be seen by Gephi
   
+             Node1     Edge      Node2
+        0   people     have      wrath
+        1   people     have      hands
+        2   county     have       duty
+        3  sheriff  convene      court
+        4  sheriff      try  criminals
+      
 ##  Dependencies:
   - Stanford CoreNlp 
   - NLTK
