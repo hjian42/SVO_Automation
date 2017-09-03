@@ -10,10 +10,12 @@ sys.setdefaultencoding("utf-8")
 
 #subprocess.call(['python', 'install.py'])
 # python process.py coref /Users/apple/Desktop/SVO_Automation/clausIE/data/input/ /Users/apple/Desktop/SVO_Automation/clausIE/data/
+# python process.py no /Users/apple/Desktop/SVO_Automation/clausIE/data/input/ /Users/apple/Desktop/SVO_Automation/clausIE/data/ /Users/apple/Desktop/SVO_Automation/clausIE/tmp/actors.txt
 
 do_coref = sys.argv[1]
 PATH_IN = sys.argv[2]
 PATH_OUT = sys.argv[3]
+PATH_ACTOR = sys.argv[4]
 coref_out = PATH_OUT + '/processed_input'
 path_processed = coref_out
 if not os.path.exists(coref_out):
@@ -37,6 +39,6 @@ if __name__ == '__main__':
 	subprocess.call(['java', '-jar', 'clausie.jar', '-vlf', path_clausie_input, '-o', path_clausie_out])
 	os.chdir(startingDir)
 	extract_svo.extract(PATH_OUT)
-	filtering.svo_filter(NUM_SENT, PATH_OUT)
+	filtering.svo_filter(NUM_SENT, PATH_OUT, PATH_ACTOR)
 	
 # python process.py coref /Users/apple/Desktop/clausie/data1 /Users/apple/Desktop/clausie/data_out

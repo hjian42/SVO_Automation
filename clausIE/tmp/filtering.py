@@ -128,8 +128,9 @@ def filter(NUM_SENT,PATH_ACTORS, PATH_SVO_MID, PATH_SVO_FINAL, PATH_CSV):
     print(df.head())
     df.to_csv(PATH_CSV)
 
-def svo_filter(NUM_SENT, PATH_OUT):
-    PATH_ACTORS = '/'.join([PATH_OUT, 'actors.txt'])
+def svo_filter(NUM_SENT, PATH_OUT, PATH_ACTOR):
+    PATH_ACTORS = PATH_ACTOR
+    print PATH_ACTORS
     PATH_SVO = '/'.join([PATH_OUT, 'svo.txt'])
     PATH_SVO_MID = '/'.join([PATH_OUT, 'mid_svo.txt'])
     PATH_SVO_FINAL = '/'.join([PATH_OUT, 'final_svo.txt'])
