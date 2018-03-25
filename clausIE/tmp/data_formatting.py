@@ -1,17 +1,11 @@
 # coding: utf-8
 
+import nltk
 from nltk.tokenize import sent_tokenize
 import glob
 import os
 import string
 
-# start = os.getcwd()
-# os.chdir(os.path.abspath('..'))
-# tmp = os.getcwd()
-# PATH = '/'.join([tmp, 'data/processed_input'])
-# PATH_corpus = '/'.join([tmp, 'data/processed_corpus.txt'])
-# PATH_clausie = '/'.join([tmp, 'data/clausie_input.txt'])
-# os.chdir(start) 
 NUM_SENT = 0
 
 def isSentence(sentence):
@@ -51,8 +45,8 @@ def isTitle(sentence):
 		return True
 
 def run(PATH_OUT, PATH):
-	PATH_corpus = '/'.join([PATH_OUT, 'processed_corpus.txt'])
-	PATH_clausie = '/'.join([PATH_OUT, 'clausie_input.txt'])
+	PATH_corpus = os.path.join(PATH_OUT, 'processed_corpus.txt')
+	PATH_clausie = os.path.join(PATH_OUT, 'clausie_input.txt')
 	with open(PATH_corpus, 'w') as out:
 		for file in glob.glob(os.path.join(PATH, '*.txt')):
 			with open(file, 'r') as f:
@@ -70,11 +64,11 @@ def run(PATH_OUT, PATH):
 
 	with open(PATH_corpus, 'r') as f:
 		sentences = f.read()
-		sentences = sent_tokenize(sentences.decode('utf-8'))
+		sentences = sent_tokenize(sentences)
 		NUM_SENT = len(sentences)
 		print('There are %d number of sentences from the dataset to be fed into ClausIE.' % (NUM_SENT))
 		with open(PATH_clausie,'w') as out:
 			for i,sentence in enumerate(sentences):
 				sentence = sentence.replace('\n', '')
-				out.write('%d\t%s\n'% (i, sentence.encode('utf-8'))) 
+				out.write('%d\t%s\n'% (i, sentence)) 
 	return NUM_SENT
